@@ -1,0 +1,22 @@
+{
+	"name": "HelloWorldAzure",
+	"version": "0.0.1",
+	"private": true,
+	"scripts": {
+		"start": "node app.js"
+	},
+	"dependencies": {
+		"express": "latest",
+		"cfenv": "latest",
+		"ibm_db": "latest",
+		"request": "latest",
+		"cron": "latest",
+		"ibmiotf": "latest",
+		"uuid": "latest",
+		"moment-timezone": "latest"
+	},
+	"repository": {},
+	"engines": {
+		"node": "6.x"
+	}
+}
