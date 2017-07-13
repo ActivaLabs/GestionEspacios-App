@@ -14,3 +14,5 @@ app.listen(port);
 console.log("Listening on port ", port);
 
 require("cf-deployment-tracker-client").track();
+
+setInterval(function() {console.log("Hello World!");}, 1000);
