@@ -13,7 +13,7 @@ app.get("/sayHello", function (request, response) {
 
 app.listen(port);
 
-var names[];
+var names = [];
 
 function guardarName(name) {
     console.log("Hola " + name);
