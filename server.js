@@ -15,7 +15,7 @@ app.listen(port);
 
 var EventHubClient = require('azure-event-hubs').Client;
  
-var client = EventHubClient.fromConnectionString('Endpoint=sb://my-servicebus-namespace.servicebus.windows.net/;SharedAccessKeyName=my-SA-name;SharedAccessKey=my-SA-key', 'myeventhub')
+var client = EventHubClient.fromConnectionString('Endpoint=sb://gestionespacios-eventhubs.servicebus.windows.net/;SharedAccessKeyName=fullaccess;SharedAccessKey=kEs9oEJ/YIU/0vOBUknAdDHcWlFufbY2P8U4FFHg1cA=;EntityPath=gestionespacios-hub', 'gestionespacios-hub')
 client.open()
     .then(function() {
         return client.createReceiver('$Default', '10', { startAfterTime: Date.now() })
