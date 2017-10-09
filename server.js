@@ -13,14 +13,19 @@ app.get("/sayHello", function (request, response) {
 
 app.listen(port);
 
-var names = [];
-
-function guardarName(name) {
-    console.log("Hola " + name);
-    if (names.indexOf(name) === -1) {
-        names.push(name);
-        console.log("Un nuevo amigo!");
-    } else {
-        console.log("Un viejo conocido!");
-    }
-}
+var EventHubClient = require('azure-event-hubs').Client;
+ 
+var client = EventHubClient.fromConnectionString('Endpoint=sb://my-servicebus-namespace.servicebus.windows.net/;SharedAccessKeyName=my-SA-name;SharedAccessKey=my-SA-key', 'myeventhub')
+client.open()
+    .then(function() {
+        return client.createReceiver('$Default', '10', { startAfterTime: Date.now() })
+    })
+    .then(function (rx) {
+        rx.on('errorReceived', function (err) { console.log(err); }); 
+        rx.on('message', function (message) {
+            var body = message.body;
+            // See http://azure.github.io/amqpnetlite/articles/azure_sb_eventhubs.html for details on message annotation properties from EH. 
+            var enqueuedTime = Date.parse(message.systemProperties['x-opt-enqueued-time']);
+            console.log(body);
+        });
+    });
